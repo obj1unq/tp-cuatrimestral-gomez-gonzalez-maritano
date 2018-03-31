@@ -1,9 +1,33 @@
+import capo.*
+describe "Test de capo" {
 
-describe "group of tests" {
+    test "Rolando comienza con 3 puntos básicos de lucha y 1 de hechicería:"{
+        //Puntos de lucha: 3 + 0 = 3
+        //Puntos de hechicería: 1 + 0 = 1
+        true
+    }
 
-	test "testX" {
+    test "Rolando incrementa los puntos básicos de hechicería"{
+        //Puntos de lucha: 3 + 0 = 3
+        //Puntos de hechicería: 2 + 0 = 2
+        true
+    }
 
-		assert.that(true)
+    test "Rolando obtiene el collar divino"{
+        //Puntos de lucha: 3 + 1 = 4
+        //Puntos de hechicería: 2 + 1 = 3
+        true
+    }
 
-	}
+    test "Rolando obtiene el libro de hechizos:"{
+        //Puntos de lucha: 3 + 1 = 4
+        //Puntos de hechicería: 2 + (1 + 2) = 5
+        true
+    }
+
+    test "Rolando obtiene la espada del destino:"{
+        //Puntos de lucha: 3 + (1 + 3) = 7
+        //Puntos de hechicería: 2 + (1 + 2) = 5
+        true
+    }
 }
