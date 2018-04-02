@@ -1,20 +1,19 @@
 object rolando{
-	var artefactos = #{}
+	var property artefactos = #{}
 	var property baseDeLucha = 3
 	var property baseDeHechiceria = 1
 	
 	method incrementarBaseLucha() { baseDeLucha++ }
 	method incrementarBaseHechiceria() { baseDeHechiceria++ }
-	method objeterArtefacto(unArtefacto){
+	method obtenerArtefacto(unArtefacto){
 		artefactos.add(unArtefacto)
 	}
 	method valorDeLucha(){
-
+		return baseDeLucha + artefactos.sum({_artefacto => _artefacto.puntosDeLucha(self)})
 	}
 	method valorDeHechiceria(){
-
+		return baseDeHechiceria + artefactos.sum({_artefacto => _artefacto.puntosDeHechiceria(self)})
 	}
-
 }
 
 object espadaDelDestino{
