@@ -9,7 +9,7 @@ object rolando{
 		artefactos.add(unArtefacto)
 	}
 	method valorDeLucha(){
-		//test git
+		
 	}
 	method valorDeHechiceria(){
 
@@ -31,3 +31,4 @@ object collarDivino{
 	method puntosDeHechiceria(_capo) = 1
 	
 }
+
