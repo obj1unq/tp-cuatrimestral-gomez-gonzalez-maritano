@@ -28,5 +28,4 @@ object libroDeHechizos{
 object collarDivino{
 	method puntosDeLucha(_capo) = 1
 	method puntosDeHechiceria(_capo) = 1
-	
 }
