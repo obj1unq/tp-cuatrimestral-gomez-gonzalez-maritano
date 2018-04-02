@@ -1,8 +1,15 @@
+import bandoSur.*
 object rolando{
 	var property artefactos = #{}
 	var property baseDeLucha = 3
 	var property baseDeHechiceria = 1
+	//PUTNO 3---------------------
+	var property miBando=bandoSur
 	
+	method encontroElemnto(_elemento){
+		_elemento.efecto(self)
+	}
+	//----------------------------
 	method incrementarBaseLucha() { baseDeLucha++ }
 	method incrementarBaseHechiceria() { baseDeHechiceria++ }
 	method obtenerArtefacto(unArtefacto){
