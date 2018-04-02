@@ -1,4 +1,8 @@
 import capo.*
+import cofrecitoOro.*
+import cumuloCarbon.*
+import viejoSabio.*
+
 describe "Test de capo" {
 
     test "Rolando comienza con 3 puntos básicos de lucha y 1 de hechicería:"{
@@ -30,4 +34,32 @@ describe "Test de capo" {
         //Puntos de hechicería: 2 + (1 + 2) = 5
         true
     }
+    
+    //PUTNO 3---------------------
+     test "Rolando encontro un cofrecito de oro:"{
+        //Incrementa el tesoro del bando de rolando en 100 unidades de oro
+
+        rolando.encontroElemnto(cofrecitoOro)
+        assert.equals(100,rolando.miBando().miTesoro().unidadesOro())
+        
+    }
+        test "Rolando encontro un  cúmulo de carbón:"{
+        //Incrementa el tesoro del bando de rolando en 50 unidades la reseva de materiales
+
+        rolando.encontroElemnto(cumuloCarbon)
+        assert.equals(50,rolando.miBando().miTesoro().reservaMateriales())
+        
+    }
+        test "Rolando encontro un viejo sabio:"{
+        //Incrementa en 1 punto sus habilidades básicas de lucha y hechicería
+        var baseDeHechiceria=rolando.baseDeHechiceria()
+		var baseLuchaOrginal=rolando.baseDeLucha()
+        rolando.encontroElemnto(viejoSabio)
+        assert.equals(baseLuchaOrginal+1,rolando.baseDeLucha()) 
+        assert.equals(baseDeHechiceria+1,rolando.baseDeHechiceria())
+        
+    }
+    
+ 
+       
 }
