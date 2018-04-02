@@ -1,5 +1,7 @@
 object rolando{
+	// inicializo variables
 	var artefactos = #{}
+	var lucha
 	var property baseDeLucha = 3
 	var property baseDeHechiceria = 1
 	
@@ -29,6 +31,9 @@ object libroDeHechizos{
 object collarDivino{
 	method puntosDeLucha(_capo) = 1
 	method puntosDeHechiceria(_capo) = 1
+	
+}
+object elemento{
 	
 }
 
