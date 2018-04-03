@@ -1,3 +1,5 @@
+import bandoSur.*
+
 object rolando{
  	var property artefactos = #{}
  	var property baseDeLucha = 3
