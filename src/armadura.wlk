@@ -1,5 +1,4 @@
 // PUNTO 2.1
-
 object armadura{
 	var refuerzo
 	

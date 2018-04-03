@@ -1,41 +1,49 @@
 import capo.*
+<<<<<<< HEAD
 import armadura.*
 import bendicion.*
 import cotaDeMalla.*
 import hechizo.*
 import ninguna.*
+=======
+import cofrecitoOro.*
+import cumuloCarbon.*
+import viejoSabio.*
+>>>>>>> branch 'master' of https://github.com/obj1unq/tp-cuatrimestral-gomez-gonzalez-maritano.git
 
 describe "Test de capo" {
 
     test "Rolando comienza con 3 puntos básicos de lucha y 1 de hechicería:"{
-        //Puntos de lucha: 3 + 0 = 3
-        //Puntos de hechicería: 1 + 0 = 1
-        true
+        assert.equals(3, rolando.baseDeLucha())
+        assert.equals(1, rolando.baseDeHechiceria())
     }
-
     test "Rolando incrementa los puntos básicos de hechicería"{
-        //Puntos de lucha: 3 + 0 = 3
-        //Puntos de hechicería: 2 + 0 = 2
-        true
+     	rolando.incrementarBaseHechiceria()
+     	assert.equals(3, rolando.baseDeLucha())
+        assert.equals(2, rolando.baseDeHechiceria())
     }
 
     test "Rolando obtiene el collar divino"{
-        //Puntos de lucha: 3 + 1 = 4
-        //Puntos de hechicería: 2 + 1 = 3
-        true
+        rolando.obtenerArtefacto(collarDivino)
+     	assert.equals(4, rolando.valorDeLucha())
+        assert.equals(2, rolando.valorDeHechiceria())
     }
 
     test "Rolando obtiene el libro de hechizos:"{
-        //Puntos de lucha: 3 + 1 = 4
-        //Puntos de hechicería: 2 + (1 + 2) = 5
-        true
+        rolando.obtenerArtefacto(libroDeHechizos)
+        rolando.incrementarBaseHechiceria()
+     	assert.equals(3, rolando.valorDeLucha())
+        assert.equals(4, rolando.valorDeHechiceria())
     }
 
     test "Rolando obtiene la espada del destino:"{
-        //Puntos de lucha: 3 + (1 + 3) = 7
-        //Puntos de hechicería: 2 + (1 + 2) = 5
-        true
+        rolando.obtenerArtefacto(espadaDelDestino)
+     	assert.equals(6, rolando.valorDeLucha())
+        assert.equals(1, rolando.valorDeHechiceria())
     }
+
+	// TEST PUNTO 2.1
+
     test "rolando obtiene armadura con cota de malla"{
     rolando.obtenerArtefacto(armadura)
     armadura.asignarRefuerzo(cotaDeMalla)
@@ -99,4 +107,34 @@ describe "Test de capo" {
     // EL VALOR DE HECHICERIA DE ROLANDO DEBERA SER 1
     assert.equals(1, rolando.valorDeHechiceria())
     }
+=======
+    
+    //PUTNO 3---------------------
+     test "Rolando encontro un cofrecito de oro:"{
+        //Incrementa el tesoro del bando de rolando en 100 unidades de oro
+
+        rolando.encontroElemnto(cofrecitoOro)
+        assert.equals(100,rolando.miBando().miTesoro().unidadesOro())
+        
+    }
+        test "Rolando encontro un  cúmulo de carbón:"{
+        //Incrementa el tesoro del bando de rolando en 50 unidades la reseva de materiales
+
+        rolando.encontroElemnto(cumuloCarbon)
+        assert.equals(50,rolando.miBando().miTesoro().reservaMateriales())
+        
+    }
+        test "Rolando encontro un viejo sabio:"{
+        //Incrementa en 1 punto sus habilidades básicas de lucha y hechicería
+        var baseDeHechiceria=rolando.baseDeHechiceria()
+		var baseLuchaOrginal=rolando.baseDeLucha()
+        rolando.encontroElemnto(viejoSabio)
+        assert.equals(baseLuchaOrginal+1,rolando.baseDeLucha()) 
+        assert.equals(baseDeHechiceria+1,rolando.baseDeHechiceria())
+        
+    }
+    
+ 
+       
+>>>>>>> branch 'master' of https://github.com/obj1unq/tp-cuatrimestral-gomez-gonzalez-maritano.git
 }

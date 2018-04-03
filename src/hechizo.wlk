@@ -1,6 +1,5 @@
 // PUNTO 2.1
 import capo.*
-
 object hechizo{
 	method puntosDeLucha(_capo) = 0
 	method puntosDeHechiceria(_capo) {
