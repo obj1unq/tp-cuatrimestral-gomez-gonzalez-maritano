@@ -1,4 +1,5 @@
 import bandoSur.*
+import espejoFantastico.*
 object rolando{
 	var property artefactos = #{}
 	var property baseDeLucha = 3
@@ -20,6 +21,9 @@ object rolando{
 	}
 	method valorDeHechiceria(){
 		return baseDeHechiceria + artefactos.sum({_artefacto => _artefacto.puntosDeHechiceria(self)})
+	}
+	method mejorArtefacto(){
+		return artefactos.max({_artefacto => _artefacto.puntosDeLucha(self) + _artefacto.puntosDeHechiceria(self)})
 	}
 }
 

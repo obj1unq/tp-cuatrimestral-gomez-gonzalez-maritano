@@ -2,6 +2,7 @@ import capo.*
 import cofrecitoOro.*
 import cumuloCarbon.*
 import viejoSabio.*
+import espejoFantastico.*
 
 describe "Test de capo" {
 
@@ -32,6 +33,17 @@ describe "Test de capo" {
         rolando.obtenerArtefacto(espadaDelDestino)
      	assert.equals(6, rolando.valorDeLucha())
         assert.equals(1, rolando.valorDeHechiceria())
+    }
+    test "Si Rolando obtine espejo fantastico, este no aplica ningún valor"{
+    	rolando.obtenerArtefacto(espejoFantastico)
+     	assert.equals(3, rolando.valorDeLucha())
+        assert.equals(1, rolando.valorDeHechiceria())
+    }
+    test "Rolando tiene collar divino y espejo fantastico"{
+		rolando.obtenerArtefacto(collarDivino)
+		rolando.obtenerArtefacto(espejoFantastico)
+     	assert.equals(5, rolando.valorDeLucha())
+        assert.equals(3, rolando.valorDeHechiceria())
     }
     
     //PUTNO 3---------------------
