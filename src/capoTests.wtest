@@ -1,15 +1,12 @@
 import capo.*
-<<<<<<< HEAD
 import armadura.*
 import bendicion.*
 import cotaDeMalla.*
 import hechizo.*
 import ninguna.*
-=======
 import cofrecitoOro.*
 import cumuloCarbon.*
 import viejoSabio.*
->>>>>>> branch 'master' of https://github.com/obj1unq/tp-cuatrimestral-gomez-gonzalez-maritano.git
 
 describe "Test de capo" {
 
@@ -42,7 +39,7 @@ describe "Test de capo" {
         assert.equals(1, rolando.valorDeHechiceria())
     }
 
-	// TEST PUNTO 2.1
+	// TEST PUNTO 2.1 -----------------------
 
     test "rolando obtiene armadura con cota de malla"{
     rolando.obtenerArtefacto(armadura)
@@ -107,20 +104,19 @@ describe "Test de capo" {
     // EL VALOR DE HECHICERIA DE ROLANDO DEBERA SER 1
     assert.equals(1, rolando.valorDeHechiceria())
     }
-=======
     
-    //PUTNO 3---------------------
+    //TEST PUNTO 3---------------------
      test "Rolando encontro un cofrecito de oro:"{
         //Incrementa el tesoro del bando de rolando en 100 unidades de oro
 
-        rolando.encontroElemnto(cofrecitoOro)
+        rolando.encontroElemento(cofrecitoOro)
         assert.equals(100,rolando.miBando().miTesoro().unidadesOro())
         
     }
         test "Rolando encontro un  cúmulo de carbón:"{
         //Incrementa el tesoro del bando de rolando en 50 unidades la reseva de materiales
 
-        rolando.encontroElemnto(cumuloCarbon)
+        rolando.encontroElemento(cumuloCarbon)
         assert.equals(50,rolando.miBando().miTesoro().reservaMateriales())
         
     }
@@ -128,13 +124,9 @@ describe "Test de capo" {
         //Incrementa en 1 punto sus habilidades básicas de lucha y hechicería
         var baseDeHechiceria=rolando.baseDeHechiceria()
 		var baseLuchaOrginal=rolando.baseDeLucha()
-        rolando.encontroElemnto(viejoSabio)
+        rolando.encontroElemento(viejoSabio)
         assert.equals(baseLuchaOrginal+1,rolando.baseDeLucha()) 
         assert.equals(baseDeHechiceria+1,rolando.baseDeHechiceria())
         
     }
-    
- 
-       
->>>>>>> branch 'master' of https://github.com/obj1unq/tp-cuatrimestral-gomez-gonzalez-maritano.git
 }

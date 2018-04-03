@@ -2,20 +2,32 @@ import bandoSur.*
 
 object rolando{
  	var property artefactos = #{}
+ 	
  	var property baseDeLucha = 3
+ 	
  	var property baseDeHechiceria = 1
+ 	
+ 	var property miBando = bandoSur
 
  	method incrementarBaseLucha() { baseDeLucha++ }
+ 	
  	method incrementarBaseHechiceria() { baseDeHechiceria++ }
+ 	
  	method obtenerArtefacto(unArtefacto){
  		artefactos.add(unArtefacto)
  	}
+ 	
  	method valorDeLucha(){
  		return baseDeLucha + artefactos.sum({_artefacto => _artefacto.puntosDeLucha(self)})
  	}
+ 	
  	method valorDeHechiceria(){
  		return baseDeHechiceria + artefactos.sum({_artefacto => _artefacto.puntosDeHechiceria(self)})
  	}
+ 	 	
+	method encontroElemento(_elemento){
+		_elemento.efecto(self)
+	}
  }
  
  object espadaDelDestino{
