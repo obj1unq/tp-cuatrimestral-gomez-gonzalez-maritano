@@ -10,3 +10,6 @@ object armadura{
 	
 	method puntosDeHechiceria(_capo) = refuerzo.puntosDeHechiceria(_capo)	
 }
+
+// IDEA: Los refuerzos son objetos sencillos, tal vez sería más fácil tener una visión global
+// de la idea si estuvieran todos juntos en el mismo archivo.

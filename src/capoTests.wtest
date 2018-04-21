@@ -39,6 +39,7 @@ describe "Test de capo" {
      	assert.equals(6, rolando.valorDeLucha())
         assert.equals(1, rolando.valorDeHechiceria())
     }
+    // DETALLE: sería mejor "Si Rolando obtiene SÓLO el espejo fantástico"
     test "Si Rolando obtine espejo fantastico, este no aplica ningún valor"{
     	rolando.obtenerArtefacto(espejoFantastico)
      	assert.equals(3, rolando.valorDeLucha())
@@ -52,6 +53,9 @@ describe "Test de capo" {
     }
 
 	// TEST PUNTO 2.1 -----------------------
+	// IDEA: Está bueno que hicieron unos cuantos tests, con situaciones posibles.
+	// Sin embargo, esta estrategia hace difícil garantizar que uno esté testeando todo lo necesario.
+	// Sería interesante tratar de testear las unidades de código por separado.
 
     test "rolando obtiene armadura con cota de malla"{
     rolando.obtenerArtefacto(armadura)
