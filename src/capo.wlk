@@ -1,4 +1,3 @@
-import espejoFantastico.*
 import elementos.*
 import artefactos.*
 
@@ -26,8 +25,8 @@ object rolando{
 	method puntosDeHechiceria(){
 		return baseDeHechiceria + artefactos.sum({artefacto => artefacto.puntosDeHechiceria(self)})
 	}
-	method mejorArtefacto(){
-		return artefactos.max({_artefacto => _artefacto.puntosDeLucha(self) + _artefacto.puntosDeHechiceria(self)})
+	method mejorArtefacto(_artefactos){
+		return _artefactos.max({_artefacto => _artefacto.puntosDeLucha(self) + _artefacto.puntosDeHechiceria(self)})
 	}
 }
 
