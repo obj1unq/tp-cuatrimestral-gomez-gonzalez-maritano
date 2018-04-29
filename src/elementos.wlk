@@ -11,21 +11,44 @@ object bandoSur {
 	method reservaMateriales(unidades) { reservaMateriales += unidades }
 }
 
-object cofrecitoOro {
+class CofrecitoOro {
+	
+	var unidadesDeOro = 100
+	
 	method efecto(_capo){
-		_capo.bando().unidadesOro(100)	
+		_capo.bando().unidadesOro(unidadesDeOro)	
 	}	
+	
+	method puntosDeLucha(_capo) = 0
+	
+	method puntosDeHechiceria(_capo) = 0
 }
 
-object cumuloCarbon {
+class CumuloCarbon {
+	
 	method efecto(_capo){
 		_capo.bando().reservaMateriales(50)
 	}
+	
+	method puntosDeLucha(_capo) = 0
+	
+	method puntosDeHechiceria(_capo) = 0
 }
 
-object viejoSabio {
-	method efecto(_capo){
-		_capo.incrementarBaseLucha()
-		_capo.incrementarBaseHechiceria()
+class ViejoSabio {
+	var puntosDeHechiceria = 1
+	
+	method efecto(_capo){}
+	
+	method puntosDeLucha(_capo) = ayudanteViejoSabio.puntosDeLucha()
+	
+	method puntosDeHechiceria(_capo) = puntosDeHechiceria
+}
+
+object ayudanteViejoSabio{
+	var property puntosDeLucha = 1
+	
+	method puntosDeLucha(nuevoValor){
+		puntosDeLucha = nuevoValor
 	}
 }

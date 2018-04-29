@@ -1,0 +1,32 @@
+import capo.*
+import elementos.*
+import artefactos.*
+import armaduras.*
+
+describe "tests armaduras TP 2 punto 3"{
+	
+		var armaduraConHechizo = new Armadura(refuerzo=hechizo)
+		var armaduraConCotaDeMalla = new Armadura(refuerzo=cotaDeMalla)
+		var armaduraSinRefuerzo = new Armadura(refuerzo=ninguna)
+		var armaduraConBendicion = new Armadura(refuerzo=bendicion)
+	
+	test "Rolando obtiene armadura sin refuerzo + armadura con bendicion" {
+		
+		rolando.obtenerArtefacto(armaduraSinRefuerzo)
+		rolando.obtenerArtefacto(armaduraConBendicion)
+		assert.equals(2, armaduraSinRefuerzo.puntosDeLucha(rolando)) //DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
+		assert.equals(2, armaduraConBendicion.puntosDeLucha(rolando)) //DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
+		assert.equals(0, armaduraSinRefuerzo.puntosDeHechiceria(rolando)) // DEBERIA SUMAR 0 DE HECHICERIA	
+    	assert.equals(1, armaduraConBendicion.puntosDeHechiceria(rolando)) // DEBERIA SUMAR 1 DE HECHICERIA
+	}
+	
+	test "Rolando obtiene armadura con hecizo + armadura con cota de malla" {
+
+		rolando.obtenerArtefacto(armaduraConHechizo)
+		rolando.obtenerArtefacto(armaduraConCotaDeMalla)
+		assert.equals(2, armaduraConHechizo.puntosDeLucha(rolando)) //DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
+		assert.equals(2 + 1, armaduraConCotaDeMalla.puntosDeLucha(rolando)) //DEBERIA SUMAR 2 DE LUCHA POR DEFECTO + 1 POR COTA DE MALLA
+		assert.equals(0, armaduraConHechizo.puntosDeHechiceria(rolando)) // DEBERIA SUMAR 0 DE HECHICERIA	
+    	assert.equals(0, armaduraConCotaDeMalla.puntosDeHechiceria(rolando)) // DEBERIA SUMAR 0 DE HECHICERIA
+	}	
+}

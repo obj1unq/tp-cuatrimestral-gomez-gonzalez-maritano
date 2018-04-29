@@ -4,7 +4,15 @@ import artefactos.*
 import armaduras.*
 
 describe "Test de capo" {
-
+	
+	var armaduraConHechizo = new Armadura(refuerzo=hechizo)
+	var armaduraConCotaDeMalla = new Armadura(refuerzo=cotaDeMalla)
+	var armaduraSinRefuerzo = new Armadura(refuerzo=ninguna)
+	var armaduraConBendicion = new Armadura(refuerzo=bendicion)
+	var cofrecitoOro1 = new CofrecitoOro()
+	var cumuloCarbon1 = new CumuloCarbon()
+	var viejoSabio1 = new ViejoSabio(puntosDeHechiceria = 1)
+	
     test "Rolando comienza con 3 puntos básicos de lucha y 1 de hechicería:"{
         assert.equals(3, rolando.baseDeLucha())
         assert.equals(1, rolando.baseDeHechiceria())
@@ -33,7 +41,7 @@ describe "Test de capo" {
      	assert.equals(6, rolando.puntosDeLucha())
         assert.equals(1, rolando.puntosDeHechiceria())
     }
-    // DETALLE: sería mejor "Si Rolando obtiene SÓLO el espejo fantástico"
+
     test "Si Rolando obtine espejo fantastico, este no aplica ningún puntos"{
     	rolando.obtenerArtefacto(espejoFantastico)
      	assert.equals(3, rolando.puntosDeLucha())
@@ -46,32 +54,27 @@ describe "Test de capo" {
         assert.equals(3, rolando.puntosDeHechiceria())
     }
 
-	// TEST PUNTO 2.1 -----------------------
-	// IDEA: Está bueno que hicieron unos cuantos tests, con situaciones posibles.
-	// Sin embargo, esta estrategia hace difícil garantizar que uno esté testeando todo lo necesario.
-	// Sería interesante tratar de testear las unidades de código por separado.
+	// TESTS PUNTO 2.1 
 
     test "rolando obtiene armadura con cota de malla"{
-    rolando.obtenerArtefacto(armadura)
-    armadura.asignarRefuerzo(cotaDeMalla)
+    rolando.obtenerArtefacto(armaduraConCotaDeMalla)
     // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO, MAS 1 POR REFUERZO COTA DE MALLA
-    assert.equals(3, armadura.puntosDeLucha(rolando))
+    assert.equals(3, armaduraConCotaDeMalla.puntosDeLucha(rolando))
     // EL puntos DE LUCHA DE ROLANDO DEBERA SER 6
     assert.equals(6, rolando.puntosDeLucha())
     // DEBERIA SUMAR 0 DE HECHICERIA	
-    assert.equals(0, armadura.puntosDeHechiceria(rolando))
+    assert.equals(0, armaduraConCotaDeMalla.puntosDeHechiceria(rolando))
     // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 1
     assert.equals(1, rolando.puntosDeHechiceria())
     }
     test "rolando obtiene armadura con bendicion"{
-    rolando.obtenerArtefacto(armadura)
-    armadura.asignarRefuerzo(bendicion)
+    rolando.obtenerArtefacto(armaduraConBendicion)
     // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
-    assert.equals(2, armadura.puntosDeLucha(rolando))
+    assert.equals(2, armaduraConBendicion.puntosDeLucha(rolando))
     // EL puntos DE LUCHA DE ROLANDO DEBERA SER 5
     assert.equals(5, rolando.puntosDeLucha())
     // DEBERIA SUMAR 1 DE HECHICERIA	
-    assert.equals(1, armadura.puntosDeHechiceria(rolando))
+    assert.equals(1, armaduraConBendicion.puntosDeHechiceria(rolando))
     // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 2
     assert.equals(2, rolando.puntosDeHechiceria())
     }
@@ -79,54 +82,51 @@ describe "Test de capo" {
     rolando.incrementarBaseHechiceria()
     rolando.incrementarBaseHechiceria()
     rolando.incrementarBaseHechiceria()
-    rolando.obtenerArtefacto(armadura)
-    armadura.asignarRefuerzo(hechizo)
+    rolando.obtenerArtefacto(armaduraConHechizo)
     // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
-    assert.equals(2, armadura.puntosDeLucha(rolando))
+    assert.equals(2, armaduraConHechizo.puntosDeLucha(rolando))
     // EL puntos DE LUCHA DE ROLANDO DEBERA SER 5
     assert.equals(5, rolando.puntosDeLucha())
     // DEBERIA SUMAR 2 DE HECHICERIA, POR SER LA HECHICERIA BASE DE ROLANDO MAYOR A 3	
-    assert.equals(2, armadura.puntosDeHechiceria(rolando))
+    assert.equals(2, armaduraConHechizo.puntosDeHechiceria(rolando))
     // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 6
     assert.equals(6, rolando.puntosDeHechiceria())
     }
    test "rolando obtiene armadura con hechizo"{
-    rolando.obtenerArtefacto(armadura)
-    armadura.asignarRefuerzo(hechizo)
+    rolando.obtenerArtefacto(armaduraConHechizo)
     // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
-    assert.equals(2, armadura.puntosDeLucha(rolando))
+    assert.equals(2, armaduraConHechizo.puntosDeLucha(rolando))
     // EL puntos DE LUCHA DE ROLANDO DEBERA SER 5
     assert.equals(5, rolando.puntosDeLucha())
     // DEBERIA SUMAR 0 DE HECHICERIA, POR SER LA HECHICERIA BASE DE ROLANDO MENOR A 3	
-    assert.equals(0, armadura.puntosDeHechiceria(rolando))
+    assert.equals(0, armaduraConHechizo.puntosDeHechiceria(rolando))
     // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 1
     assert.equals(1, rolando.puntosDeHechiceria())
     }
    test "rolando obtiene armadura sin refuerzo"{
-    rolando.obtenerArtefacto(armadura)
-    armadura.asignarRefuerzo(ninguna)
-    // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
-    assert.equals(2, armadura.puntosDeLucha(rolando))
+    rolando.obtenerArtefacto(armaduraSinRefuerzo)
+   // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
+    assert.equals(2, armaduraSinRefuerzo.puntosDeLucha(rolando))
     // EL puntos DE LUCHA DE ROLANDO DEBERA SER 5
     assert.equals(5, rolando.puntosDeLucha())
     // DEBERIA SUMAR 0 DE HECHICERIA	
-    assert.equals(0, armadura.puntosDeHechiceria(ninguna))
+    assert.equals(0, armaduraSinRefuerzo.puntosDeHechiceria(ninguna))
     // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 1
     assert.equals(1, rolando.puntosDeHechiceria())
     }
     
-    //PUTNO 3---------------------
+    //TESTS PUNTO 3
      test "Rolando encontro un cofrecito de oro:"{
         //Incrementa el tesoro del bando de rolando en 100 unidades de oro
 
-        rolando.encontroElemento(cofrecitoOro)
+        rolando.encontroElemento(cofrecitoOro1)
         assert.equals(100,rolando.bando().unidadesOro())
         
     }
         test "Rolando encontro un  cúmulo de carbón:"{
         //Incrementa el tesoro del bando de rolando en 50 unidades la reseva de materiales
 
-        rolando.encontroElemento(cumuloCarbon)
+        rolando.encontroElemento(cumuloCarbon1)
         assert.equals(50,rolando.bando().reservaMateriales())
         
     }
@@ -134,7 +134,7 @@ describe "Test de capo" {
         //Incrementa en 1 punto sus habilidades básicas de lucha y hechicería
         var baseDeHechiceria=rolando.baseDeHechiceria()
 		var baseLuchaOrginal=rolando.baseDeLucha()
-        rolando.encontroElemento(viejoSabio)
+        rolando.encontroElemento(viejoSabio1)
         assert.equals(baseLuchaOrginal+1,rolando.baseDeLucha()) 
         assert.equals(baseDeHechiceria+1,rolando.baseDeHechiceria())
         
