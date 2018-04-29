@@ -48,7 +48,11 @@ class ViejoSabio {
 object ayudanteViejoSabio{
 	var property puntosDeLucha = 1
 	
-	method puntosDeLucha(nuevoValor){
-		puntosDeLucha = nuevoValor
-	}
+	/*	var puntosDelucha = 1 //getter
+	 *  
+	 * method puntosDeLucha(nuevoValor){ puntosDeLucha = nuevoValor } //setter
+	 * 
+	 * se resume a:
+	 * var property puntosDeLucha = 1 // getter & setter
+	* */
 }
