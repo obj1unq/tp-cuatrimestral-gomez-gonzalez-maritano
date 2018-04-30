@@ -4,7 +4,11 @@ import artefactos.*
 import armaduras.*
 
 describe "tests armaduras TP 2 punto 3"{
-	
+		var bandoSur=new Bando(unidadesOro=100,	reservaMateriales=50);
+		var rolando=new Capo(artefactos = #{}, 
+									baseDeLucha = 3, 
+									baseDeHechiceria = 1, 
+									bando = bandoSur);
 		var armaduraConHechizo = new Armadura(refuerzo=hechizo)
 		var armaduraConCotaDeMalla = new Armadura(refuerzo=cotaDeMalla)
 		var armaduraSinRefuerzo = new Armadura(refuerzo=ninguna)

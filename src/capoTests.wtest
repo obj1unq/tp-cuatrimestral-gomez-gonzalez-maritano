@@ -5,6 +5,22 @@ import armaduras.*
 
 describe "Test de capo" {
 	
+	var bandoSur=new Bando(unidadesOro=100,	reservaMateriales=50);
+ 	var bandoNorte=new Bando(unidadesOro=200, reservaMateriales=200);
+ 	
+	var rolando=new Capo(artefactos = #{}, 
+									baseDeLucha = 3, 
+									baseDeHechiceria = 1, 
+									bando = bandoSur);
+	var	caterina=new Capo(artefactos = #{espadaDelDestino}, 
+										baseDeLucha = 2, 
+										baseDeHechiceria = 1, 
+										bando = bandoSur);
+	var	archivaldo=new Capo(artefactos = #{collarDivino, espejoFantastico}, 
+										baseDeLucha = 3, 
+										baseDeHechiceria = 3, 
+										bando = bandoNorte);
+	
 	var armaduraConHechizo = new Armadura(refuerzo=hechizo)
 	var armaduraConCotaDeMalla = new Armadura(refuerzo=cotaDeMalla)
 	var armaduraSinRefuerzo = new Armadura(refuerzo=ninguna)
@@ -13,69 +29,114 @@ describe "Test de capo" {
 	var cumuloCarbon1 = new CumuloCarbon()
 	var viejoSabio1 = new ViejoSabio(puntosDeHechiceria = 1)
 	
-    test "Rolando comienza con 3 puntos básicos de lucha y 1 de hechicería:"{
+	
+	
+    test "rolando comienza con 3 puntos básicos de lucha y 1 de hechicería:"{
         assert.equals(3, rolando.baseDeLucha())
         assert.equals(1, rolando.baseDeHechiceria())
     }
-    test "Rolando incrementa los puntos básicos de hechicería"{
+    test "rolando incrementa los puntos básicos de hechicería"{
      	rolando.incrementarBaseHechiceria()
      	assert.equals(3, rolando.baseDeLucha())
         assert.equals(2, rolando.baseDeHechiceria())
     }
 
-    test "Rolando obtiene el collar divino"{
+    test "rolando obtiene el collar divino"{
         rolando.obtenerArtefacto(collarDivino)
      	assert.equals(4, rolando.puntosDeLucha())
         assert.equals(2, rolando.puntosDeHechiceria())
     }
 
-    test "Rolando obtiene el libro de hechizos:"{
+    test "rolando obtiene el libro de hechizos:"{
         rolando.obtenerArtefacto(libroDeHechizos)
         rolando.incrementarBaseHechiceria()
      	assert.equals(3, rolando.puntosDeLucha())
         assert.equals(4, rolando.puntosDeHechiceria())
     }
 
-    test "Rolando obtiene la espada del destino:"{
+    test "rolando obtiene la espada del destino:"{
         rolando.obtenerArtefacto(espadaDelDestino)
      	assert.equals(6, rolando.puntosDeLucha())
         assert.equals(1, rolando.puntosDeHechiceria())
     }
 
-    test "Si Rolando obtine espejo fantastico, este no aplica ningún puntos"{
+    test "Si rolando obtine espejo fantastico, este no aplica ningún puntos"{
     	rolando.obtenerArtefacto(espejoFantastico)
      	assert.equals(3, rolando.puntosDeLucha())
         assert.equals(1, rolando.puntosDeHechiceria())
     }
-    test "Rolando tiene collar divino y espejo fantastico"{
+    test "rolando tiene collar divino y espejo fantastico"{
 		rolando.obtenerArtefacto(collarDivino)
 		rolando.obtenerArtefacto(espejoFantastico)
      	assert.equals(5, rolando.puntosDeLucha())
         assert.equals(3, rolando.puntosDeHechiceria())
     }
 
-	// TESTS PUNTO 2.1 
+	// TESTS PUNTO 2 - ENTREGA 2
+
+    test "rolando encuentra a archivaldo"{
+    rolando.encontroCosa(archivaldo)
+    // Muere Rolando, ya que archibaldo suma 10 puntos entre lucha y hechicería mientras que Rolando solo 4
+    assert.notThat(rolando.estaVivo())
+   
+    }
+
+ 	test "rolando encuentra a caterina"{
+    rolando.encontroCosa(caterina)
+    // Le pasa la espada del destino Rolando y éstequeda con 1 de hechicería y 6 de lucha
+    assert.equals(1, rolando.puntosDeHechiceria())
+    assert.equals(6, rolando.puntosDeLucha())
+   
+    }
+    
+    test "rolando encuentra una armadura vendecida"{
+    rolando.encontroCosa(armaduraConBendicion)
+    // Queda con 2 de hechicería y 5 de lucha
+    assert.equals(2, rolando.puntosDeHechiceria())
+    assert.equals(5, rolando.puntosDeLucha())
+   
+    }
+
+	test "rolando encuentra una armadura viejo sabio"{
+    rolando.encontroCosa(viejoSabio1)
+    // queda con 2 de hechicería y 4 de lucha
+    assert.equals(2, rolando.puntosDeHechiceria())
+    assert.equals(4, rolando.puntosDeLucha())
+   
+    }
+    
+    test "Rolando se encuentra con estos elementos en este orden: el viejo sabio, la armadura Bendecida, Caterina, Archibaldo."{
+    rolando.encontroCosa(viejoSabio1)
+    rolando.encontroCosa(armaduraConBendicion)
+    rolando.encontroCosa(caterina)
+    rolando.encontroCosa(archivaldo)
+    // El que muere es Archibaldo, ya que Rolando suma 13 mientras que archibaldo mantiene los 10
+    assert.that(rolando.estaVivo())
+   
+    }
+
+	// TESTS PUNTO 2.1 - ENTREGA 1
 
     test "rolando obtiene armadura con cota de malla"{
     rolando.obtenerArtefacto(armaduraConCotaDeMalla)
     // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO, MAS 1 POR REFUERZO COTA DE MALLA
     assert.equals(3, armaduraConCotaDeMalla.puntosDeLucha(rolando))
-    // EL puntos DE LUCHA DE ROLANDO DEBERA SER 6
+    // EL puntos DE LUCHA DE rolando DEBERA SER 6
     assert.equals(6, rolando.puntosDeLucha())
     // DEBERIA SUMAR 0 DE HECHICERIA	
     assert.equals(0, armaduraConCotaDeMalla.puntosDeHechiceria(rolando))
-    // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 1
+    // EL puntos DE HECHICERIA DE rolando DEBERA SER 1
     assert.equals(1, rolando.puntosDeHechiceria())
     }
     test "rolando obtiene armadura con bendicion"{
     rolando.obtenerArtefacto(armaduraConBendicion)
     // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
     assert.equals(2, armaduraConBendicion.puntosDeLucha(rolando))
-    // EL puntos DE LUCHA DE ROLANDO DEBERA SER 5
+    // EL puntos DE LUCHA DE rolando DEBERA SER 5
     assert.equals(5, rolando.puntosDeLucha())
     // DEBERIA SUMAR 1 DE HECHICERIA	
     assert.equals(1, armaduraConBendicion.puntosDeHechiceria(rolando))
-    // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 2
+    // EL puntos DE HECHICERIA DE rolando DEBERA SER 2
     assert.equals(2, rolando.puntosDeHechiceria())
     }
     test "rolando incrementa hechiceria 3 veces, obtiene armadura con hechizo"{
@@ -85,58 +146,58 @@ describe "Test de capo" {
     rolando.obtenerArtefacto(armaduraConHechizo)
     // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
     assert.equals(2, armaduraConHechizo.puntosDeLucha(rolando))
-    // EL puntos DE LUCHA DE ROLANDO DEBERA SER 5
+    // EL puntos DE LUCHA DE rolando DEBERA SER 5
     assert.equals(5, rolando.puntosDeLucha())
-    // DEBERIA SUMAR 2 DE HECHICERIA, POR SER LA HECHICERIA BASE DE ROLANDO MAYOR A 3	
+    // DEBERIA SUMAR 2 DE HECHICERIA, POR SER LA HECHICERIA BASE DE rolando MAYOR A 3	
     assert.equals(2, armaduraConHechizo.puntosDeHechiceria(rolando))
-    // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 6
+    // EL puntos DE HECHICERIA DE rolando DEBERA SER 6
     assert.equals(6, rolando.puntosDeHechiceria())
     }
    test "rolando obtiene armadura con hechizo"{
     rolando.obtenerArtefacto(armaduraConHechizo)
     // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
     assert.equals(2, armaduraConHechizo.puntosDeLucha(rolando))
-    // EL puntos DE LUCHA DE ROLANDO DEBERA SER 5
+    // EL puntos DE LUCHA DE rolando DEBERA SER 5
     assert.equals(5, rolando.puntosDeLucha())
-    // DEBERIA SUMAR 0 DE HECHICERIA, POR SER LA HECHICERIA BASE DE ROLANDO MENOR A 3	
+    // DEBERIA SUMAR 0 DE HECHICERIA, POR SER LA HECHICERIA BASE DE rolando MENOR A 3	
     assert.equals(0, armaduraConHechizo.puntosDeHechiceria(rolando))
-    // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 1
+    // EL puntos DE HECHICERIA DE rolando DEBERA SER 1
     assert.equals(1, rolando.puntosDeHechiceria())
     }
    test "rolando obtiene armadura sin refuerzo"{
     rolando.obtenerArtefacto(armaduraSinRefuerzo)
    // DEBERIA SUMAR 2 DE LUCHA POR DEFECTO
     assert.equals(2, armaduraSinRefuerzo.puntosDeLucha(rolando))
-    // EL puntos DE LUCHA DE ROLANDO DEBERA SER 5
+    // EL puntos DE LUCHA DE rolando DEBERA SER 5
     assert.equals(5, rolando.puntosDeLucha())
     // DEBERIA SUMAR 0 DE HECHICERIA	
     assert.equals(0, armaduraSinRefuerzo.puntosDeHechiceria(ninguna))
-    // EL puntos DE HECHICERIA DE ROLANDO DEBERA SER 1
+    // EL puntos DE HECHICERIA DE rolando DEBERA SER 1
     assert.equals(1, rolando.puntosDeHechiceria())
     }
     
     //TESTS PUNTO 3
-     test "Rolando encontro un cofrecito de oro:"{
-        //Incrementa el tesoro del bando de rolando en 100 unidades de oro
+     test "rolando encontro un cofrecito de oro:"{
+        //Incrementa el tesoro del bando de rolando en 200 unidades de oro
 
-        rolando.encontroElemento(cofrecitoOro1)
-        assert.equals(100,rolando.bando().unidadesOro())
+        rolando.encontroCosa(cofrecitoOro1)
+        assert.equals(200,rolando.bando().unidadesOro())
         
     }
-        test "Rolando encontro un  cúmulo de carbón:"{
+        test "rolando encontro un  cúmulo de carbón:"{
         //Incrementa el tesoro del bando de rolando en 50 unidades la reseva de materiales
 
-        rolando.encontroElemento(cumuloCarbon1)
-        assert.equals(50,rolando.bando().reservaMateriales())
+        rolando.encontroCosa(cumuloCarbon1)
+        assert.equals(100,rolando.bando().reservaMateriales())
         
     }
-        test "Rolando encontro un viejo sabio:"{
+        test "rolando encontro un viejo sabio:"{
         //Incrementa en 1 punto sus habilidades básicas de lucha y hechicería
-        var baseDeHechiceria=rolando.baseDeHechiceria()
+        var _baseDeHechiceria=rolando.baseDeHechiceria()
 		var baseLuchaOrginal=rolando.baseDeLucha()
-        rolando.encontroElemento(viejoSabio1)
+        rolando.encontroCosa(viejoSabio1)
         assert.equals(baseLuchaOrginal+1,rolando.baseDeLucha()) 
-        assert.equals(baseDeHechiceria+1,rolando.baseDeHechiceria())
+        assert.equals(_baseDeHechiceria+1,rolando.baseDeHechiceria())
         
     }
     

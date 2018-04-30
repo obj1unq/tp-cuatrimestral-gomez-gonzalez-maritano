@@ -1,18 +1,40 @@
 import elementos.*
 import artefactos.*
-
-object rolando{
+//PUNTO 1 Y 2 ENTEGA 2----------------------
+class Capo{
 	var property artefactos = #{}
-	var property baseDeLucha = 3
-	var property baseDeHechiceria = 1
-	var property bando = bandoSur
+	var property baseDeLucha = null
+	var property baseDeHechiceria = null
+	const property bando = null
+	var property estaVivo = true
 	
-	method encontroElemento(_elemento){
-		_elemento.efecto(self)
-		baseDeLucha += _elemento.puntosDeLucha(self)
-		baseDeHechiceria += _elemento.puntosDeHechiceria(self)
+	method encontroCosa(_cosa){
+		_cosa.efecto(self)
+		
 	}
-
+	
+	method efecto(_capo){
+		if(_capo.bando()==self.bando())
+			self.regalarArtefactos(_capo)
+		else
+			self.pelearCon(_capo)
+		
+	}
+	
+	method regalarArtefactos(_capo){
+		_capo.artefactos(_capo.artefactos()+self.artefactos())
+		self.artefactos().clear()
+	}
+	
+	method pelearCon(_capo){
+		if(_capo.puntosDeLucha()+_capo.puntosDeHechiceria()
+			>self.puntosDeLucha()+self.puntosDeHechiceria()
+		)
+			self.estaVivo(false)
+		else
+			_capo.estaVivo(false)
+	}
+	
 	method incrementarBaseLucha() { baseDeLucha++ }
 	
 	method incrementarBaseHechiceria() { baseDeHechiceria++ }
@@ -34,3 +56,5 @@ object rolando{
 	}
 }
 
+
+//-----------------------------------------
