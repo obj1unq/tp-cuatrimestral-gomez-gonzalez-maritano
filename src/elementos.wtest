@@ -1,0 +1,84 @@
+import elementos.*
+import capo.*
+import elementos.*
+import artefactos.*
+import armaduras.*
+
+describe "Test de capo" {
+	var bandoSur=new Bando(unidadesOro=100,	reservaMateriales=50);
+	var bandoNorte=new Bando(unidadesOro=200, reservaMateriales=200);
+	
+	var rolando=new Capo(artefactos = #{}, 
+									baseDeLucha = 3, 
+									baseDeHechiceria = 1, 
+									bando = bandoSur);
+	var	archivaldo=new Capo(artefactos = #{collarDivino, espejoFantastico}, 
+										baseDeLucha = 3, 
+										baseDeHechiceria = 3, 
+										bando = bandoNorte);
+	var	caterina=new Capo(artefactos = #{espadaDelDestino}, 
+										baseDeLucha = 2, 
+										baseDeHechiceria = 1, 
+										bando = bandoSur);																	
+	
+	var armaduraConBendicion = new Armadura(refuerzo=bendicion)
+	var armaduraSinRefuerzo = new Armadura(refuerzo=ninguna)
+	var cumuloCarbon1 = new CumuloCarbon()
+	var cofrecitoOro1 = new CofrecitoOro()
+	var viejoSabio1 = new ViejoSabio(puntosDeHechiceria = 1)
+	
+	test"Rolando encuentra neblina(cosas ocultas: armaduraSinRefuerzo y espada del destino)"{
+		neblina.agregarCosasOcultas(armaduraSinRefuerzo)
+		neblina.agregarCosasOcultas(espadaDelDestino)
+		rolando.encontroCosa(neblina)
+		assert.equals(3 + 2 + 3, rolando.puntosDeLucha())
+		assert.equals(1 + 0 + 0, rolando.puntosDeHechiceria())
+	}
+		
+	test"Rolando encuentra neblina(cosas ocultas: archivaldo y espada del destino)"{
+		neblina.agregarCosasOcultas(cumuloCarbon1)
+		neblina.agregarCosasOcultas(archivaldo)
+		rolando.encontroCosa(neblina)
+		assert.equals(100, rolando.bando().reservaMateriales())
+		assert.notThat(rolando.estaVivo())
+	}
+		
+	test"Archivaldo encuentra neblina(cosas ocultas: Rolando y cofrecitoOro1)"{
+		neblina.agregarCosasOcultas(rolando)
+		neblina.agregarCosasOcultas(cofrecitoOro1)
+		archivaldo.encontroCosa(neblina)
+		assert.equals(300, archivaldo.bando().unidadesOro())
+		assert.equals(true, archivaldo.estaVivo())
+	}
+		
+	test "Rolando se encuentra con estos elementos en este orden: el viejo sabio, la armadura Bendecida, Caterina, Archibaldo."{
+    	rolando.encontroCosa(viejoSabio1)
+   		rolando.encontroCosa(armaduraConBendicion)
+    	rolando.encontroCosa(caterina)
+    	rolando.encontroCosa(archivaldo)
+    // El que muere es Archibaldo, ya que Rolando suma 13 mientras que archibaldo mantiene los 10
+    	assert.that(rolando.estaVivo())
+    }	
+    
+         test "rolando encontro un cofrecito de oro:"{
+        //Incrementa el tesoro del bando de rolando en 200 unidades de oro
+        rolando.encontroCosa(cofrecitoOro1)
+        assert.equals(200,rolando.bando().unidadesOro())
+        
+    }
+        test "rolando encontro un  cúmulo de carbón:"{
+        //Incrementa el tesoro del bando de rolando en 50 unidades la reseva de materiales
+        rolando.encontroCosa(cumuloCarbon1)
+        assert.equals(100,rolando.bando().reservaMateriales())
+        
+    }
+        test "rolando encontro un viejo sabio:"{
+        //Incrementa en 1 punto sus habilidades básicas de lucha y hechicería
+        var _baseDeHechiceria=rolando.baseDeHechiceria()
+		var baseLuchaOrginal=rolando.baseDeLucha()
+        rolando.encontroCosa(viejoSabio1)
+        assert.equals(baseLuchaOrginal+1,rolando.baseDeLucha()) 
+        assert.equals(_baseDeHechiceria+1,rolando.baseDeHechiceria())
+        
+    }
+}

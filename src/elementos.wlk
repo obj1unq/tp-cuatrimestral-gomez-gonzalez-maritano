@@ -12,8 +12,6 @@ class Bando {
 	method reservaMateriales(unidades) { reservaMateriales += unidades }
 }
 
-//--------------------------------------
-//PUNTO 2 ENTEGA 2----------------------
 class CofrecitoOro {
 	method efecto(_capo){
 		_capo.bando().unidadesOro(100)
@@ -40,7 +38,7 @@ class ViejoSabio {
 	
 	method puntosDeHechiceria(_capo) = puntosDeHechiceria
 }
-//----------------------------------------
+
 object ayudanteViejoSabio{
 	var property puntosDeLucha = 1
 	
@@ -51,4 +49,17 @@ object ayudanteViejoSabio{
 	 * se resume a:
 	 * var property puntosDeLucha = 1 // getter & setter
 	* */
+}
+
+object neblina{
+	var cosasOcultas = [] 
+	//PRE-CONDICION: NUNCA PUEDE ESTAR VACIA LA LISTA	
+	
+	method agregarCosasOcultas(_cosa){
+		cosasOcultas.add(_cosa)
+	}
+	
+	method efecto(_capo){
+		cosasOcultas.forEach({_cosa => _capo.encontroCosa(_cosa)})
+	}
 }
