@@ -7,6 +7,8 @@ class Capo{
 	var property baseDeHechiceria = null
 	const property bando = null
 	var property estaVivo = true
+	var property imagen = 'jugador.png'
+	var property posicion = null 
 	
 	method encontroCosa(_cosa){
 		_cosa.efecto(self)
@@ -33,6 +35,7 @@ class Capo{
 			self.estaVivo(false)
 		else
 			_capo.estaVivo(false)
+			game.removeVisual(self)
 	}
 	
 	method incrementarBaseLucha() { baseDeLucha++ }
@@ -54,7 +57,34 @@ class Capo{
 	method mejorArtefacto(_artefactos){
 		return _artefactos.max({_artefacto => _artefacto.puntosDeLucha(self) + _artefacto.puntosDeHechiceria(self)})
 	}
+	
+	method move(nuevaPosicion){
+		self.posicion(nuevaPosicion)
+	}
 }
 
 
 //-----------------------------------------
+object bandos{
+	const property bandoSur = new Bando(unidadesOro=100,reservaMateriales=50)
+ 	const property bandoNorte =new Bando(unidadesOro=200, reservaMateriales=200)
+}
+object capos{
+
+	const property rolando=new Capo(artefactos = #{}, 
+									baseDeLucha = 3, 
+									baseDeHechiceria = 1, 
+									bando = bandos.bandoSur(),
+									posicion=game.at(5,5))
+	const property caterina=new Capo(artefactos = #{espadaDelDestino}, 
+										baseDeLucha = 2, 
+										baseDeHechiceria = 1, 
+										bando = bandos.bandoSur(),
+										posicion=game.at(3,2)
+										)
+	const property archibaldo=new Capo(artefactos = #{collarDivino, espejoFantastico}, 
+										baseDeLucha = 3, 
+										baseDeHechiceria = 3, 
+										bando = bandos.bandoNorte(),
+										posicion=game.at(1,3))
+}

@@ -1,0 +1,35 @@
+import capo.*
+import armaduras.*
+//import artefactos.*
+//import elementos.*
+import wollok.game.*
+
+program caposGame {
+	//CONFIG
+	game.title("Capos Game")
+	game.height(10)
+	game.width(10)
+	game.ground("muro.png")
+	const rolando = capos.rolando()
+	const caterina = capos.caterina()
+	const archibaldo = capos.archibaldo()
+
+	//VISUAL
+
+	game.addVisual(rolando)
+	game.addVisual(caterina)
+	game.addVisual(archibaldo)
+	//TECLADO
+	
+	UP.onPressDo { rolando.move(rolando.posicion().up(1)) }
+	DOWN.onPressDo { rolando.move(rolando.posicion().down(1)) }
+	LEFT.onPressDo { rolando.move(rolando.posicion().left(1)) }
+	RIGHT.onPressDo { rolando.move(rolando.posicion().right(1)) }
+
+	
+	game.whenCollideDo(rolando, {cosa => rolando.encontroCosa(cosa)})
+
+	//START
+	game.start()
+
+}

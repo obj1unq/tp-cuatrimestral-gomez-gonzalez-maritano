@@ -41,17 +41,10 @@ class ViejoSabio {
 
 object ayudanteViejoSabio{
 	var property puntosDeLucha = 1
-	
-	/*	var puntosDelucha = 1 //getter
-	 *  
-	 * method puntosDeLucha(nuevoValor){ puntosDeLucha = nuevoValor } //setter
-	 * 
-	 * se resume a:
-	 * var property puntosDeLucha = 1 // getter & setter
-	* */
 }
 
 object neblina{
+	// puede existir el caso donde la neblina exista, pero sin cosas ocultas?
 	var cosasOcultas = [] 
 	//PRE-CONDICION: NUNCA PUEDE ESTAR VACIA LA LISTA	
 	
@@ -60,6 +53,7 @@ object neblina{
 	}
 	
 	method efecto(_capo){
+		// cosasOcultas.isEmpty ? nothing : => Puede ser una opcion 
 		cosasOcultas.forEach({_cosa => _capo.encontroCosa(_cosa)})
 	}
 }
