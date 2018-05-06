@@ -43,7 +43,9 @@ object ayudanteViejoSabio{
 	var property puntosDeLucha = 1
 }
 
-object neblina{
+class Neblina{
+	var property posicion = null
+	const property imagen = "ciudad.png"
 	// puede existir el caso donde la neblina exista, pero sin cosas ocultas?
 	var cosasOcultas = [] 
 	//PRE-CONDICION: NUNCA PUEDE ESTAR VACIA LA LISTA	
@@ -55,5 +57,12 @@ object neblina{
 	method efecto(_capo){
 		// cosasOcultas.isEmpty ? nothing : => Puede ser una opcion 
 		cosasOcultas.forEach({_cosa => _capo.encontroCosa(_cosa)})
+		game.removeVisual(self)
 	}
 }
+object neblina{
+	const property neblinaUno = new Neblina(posicion=game.at(7,7))
+	const property neblinaDos = new Neblina()	
+}
+
+

@@ -1,7 +1,7 @@
 import capo.*
 import armaduras.*
-//import artefactos.*
-//import elementos.*
+import artefactos.*
+import elementos.*
 import wollok.game.*
 
 program caposGame {
@@ -10,15 +10,18 @@ program caposGame {
 	game.height(10)
 	game.width(10)
 	game.ground("muro.png")
+	//capos.rolando().posicion(game.at(1,2)) VALIDO
 	const rolando = capos.rolando()
 	const caterina = capos.caterina()
+	neblina.neblinaUno().agregarCosasOcultas(libroDeHechizos)
 	const archibaldo = capos.archibaldo()
-
+	const neblinaUno = neblina.neblinaUno()
 	//VISUAL
 
 	game.addVisual(rolando)
 	game.addVisual(caterina)
 	game.addVisual(archibaldo)
+	game.addVisual(neblinaUno)
 	//TECLADO
 	
 	UP.onPressDo { rolando.move(rolando.posicion().up(1)) }
