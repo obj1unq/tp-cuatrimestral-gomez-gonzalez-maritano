@@ -63,28 +63,4 @@ class Capo{
 	}
 }
 
-
 //-----------------------------------------
-object bandos{
-	const property bandoSur = new Bando(unidadesOro=100,reservaMateriales=50)
- 	const property bandoNorte =new Bando(unidadesOro=200, reservaMateriales=200)
-}
-object capos{
-
-	const property rolando=new Capo(artefactos = #{}, 
-									baseDeLucha = 3, 
-									baseDeHechiceria = 1, 
-									bando = bandos.bandoSur(),
-									posicion=game.at(5,5))
-	const property caterina=new Capo(artefactos = #{espadaDelDestino}, 
-										baseDeLucha = 2, 
-										baseDeHechiceria = 1, 
-										bando = bandos.bandoSur(),
-										posicion=game.at(3,2)
-										)
-	const property archibaldo=new Capo(artefactos = #{collarDivino, espejoFantastico}, 
-										baseDeLucha = 3, 
-										baseDeHechiceria = 3, 
-										bando = bandos.bandoNorte(),
-										posicion=game.at(1,3))
-}
