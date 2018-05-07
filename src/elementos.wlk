@@ -45,7 +45,7 @@ object ayudanteViejoSabio{
 
 class Neblina{
 	const property posicion = null
-	const property imagen = "ciudad.png"
+	const property imagen = "neblina.png"
 	// puede existir el caso donde la neblina exista, pero sin cosas ocultas?
 	const property cosasOcultas = [] 
 	//PRE-CONDICION: NUNCA PUEDE ESTAR VACIA LA LISTA

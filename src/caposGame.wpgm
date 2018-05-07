@@ -20,7 +20,7 @@ program caposGame {
 	neblina.neblinaDos().agregarCosasOcultas(collarDivino)
 	const neblinaDos = neblina.neblinaDos() 
 	//VISUAL
-
+	game.addVisualIn(espadaDelDestino, game.at(3,4))
 	game.addVisual(rolando)
 	game.addVisual(caterina)
 	game.addVisual(archibaldo)
