@@ -28,6 +28,7 @@ describe "Test de capo" {
 	var viejoSabio1 = new ViejoSabio(puntosDeHechiceria = 1)
 	
 	test"Rolando encuentra neblina(cosas ocultas: armaduraSinRefuerzo y espada del destino)"{
+		var neblina = new Neblina()
 		neblina.agregarCosasOcultas(armaduraSinRefuerzo)
 		neblina.agregarCosasOcultas(espadaDelDestino)
 		rolando.encontroCosa(neblina)
@@ -36,6 +37,7 @@ describe "Test de capo" {
 	}
 		
 	test"Rolando encuentra neblina(cosas ocultas: archivaldo y espada del destino)"{
+		var neblina = new Neblina()
 		neblina.agregarCosasOcultas(cumuloCarbon1)
 		neblina.agregarCosasOcultas(archivaldo)
 		rolando.encontroCosa(neblina)
@@ -44,6 +46,7 @@ describe "Test de capo" {
 	}
 		
 	test"Archivaldo encuentra neblina(cosas ocultas: Rolando y cofrecitoOro1)"{
+		var neblina = new Neblina()
 		neblina.agregarCosasOcultas(rolando)
 		neblina.agregarCosasOcultas(cofrecitoOro1)
 		archivaldo.encontroCosa(neblina)
