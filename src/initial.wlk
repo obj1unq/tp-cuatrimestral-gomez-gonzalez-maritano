@@ -14,6 +14,7 @@ object capos{
 		baseDeLucha = 3, 
 		baseDeHechiceria = 1, 
 		bando = bandos.bandoSur(),
+		imagen = "rolando.png",
 		posicion= game.at(1,2))
 		
 	const property caterina=new Capo(
@@ -21,6 +22,7 @@ object capos{
 		baseDeLucha = 2, 
 		baseDeHechiceria = 1, 
 		bando = bandos.bandoSur(),
+		imagen = "caterina.png",
 		posicion = util.posicionRandom())
 		
 	const property archibaldo=new Capo(
@@ -28,6 +30,7 @@ object capos{
 		baseDeLucha = 3, 
 		baseDeHechiceria = 3, 
 		bando = bandos.bandoNorte(),
+		imagen = "archibaldo.png",
 		posicion = util.posicionRandom()
 		)
 }

@@ -7,7 +7,7 @@ class Capo{
 	var property baseDeHechiceria = null
 	const property bando = null
 	var property estaVivo = true
-	var property imagen = 'jugador.png'
+	var property imagen = null
 	var property posicion = null 
 	
 	method encontroCosa(_cosa){
