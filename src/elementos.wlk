@@ -1,5 +1,6 @@
 //PUNTO 1 ENTEGA 2----------------------
 class Bando {
+	// TODO ¿Por qué bando está en un archivo que se llama elementos?
 	var unidadesOro=null
 	var reservaMateriales=null
 	

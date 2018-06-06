@@ -24,6 +24,9 @@ class Capo{
 	}
 	
 	method regalarArtefactos(_capo){
+		// TODO Acá se ve el abuso de las properties, asignar la colección de artefactos de un capo desde otro no es una buena práctica
+		// porque rompe el encapsulamiento, poco cambia que lo hagas a través de un setter.
+		// Ya que estamos: si el capo ya tiene una forma de obtener un artefacto, por qué no la usamos?
 		_capo.artefactos(_capo.artefactos()+self.artefactos())
 		self.artefactos().clear()
 	}
@@ -35,7 +38,7 @@ class Capo{
 			self.estaVivo(false)
 		else
 			_capo.estaVivo(false)
-			game.removeVisual(self)
+			game.removeVisual(self) // TODO Acá la indentación confunde, creo que les faltan llaves.
 	}
 	
 	method incrementarBaseLucha() { baseDeLucha++ }

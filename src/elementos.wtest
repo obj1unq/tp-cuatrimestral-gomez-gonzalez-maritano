@@ -5,6 +5,7 @@ import artefactos.*
 import armaduras.*
 
 describe "Test de capo" {
+	// TODO tienen variables acá que no se usan!
 	var bandoSur=new Bando(unidadesOro=100,	reservaMateriales=50);
 	var bandoNorte=new Bando(unidadesOro=200, reservaMateriales=200);
 	
@@ -28,6 +29,7 @@ describe "Test de capo" {
 	var viejoSabio1 = new ViejoSabio(puntosDeHechiceria = 1)
 	
 	test"Rolando encuentra neblina(cosas ocultas: armaduraSinRefuerzo y espada del destino)"{
+		// TODO La construcción de la Neblina se podría hacer en una única instrucción.
 		var neblina = new Neblina()
 		neblina.agregarCosasOcultas(armaduraSinRefuerzo)
 		neblina.agregarCosasOcultas(espadaDelDestino)
