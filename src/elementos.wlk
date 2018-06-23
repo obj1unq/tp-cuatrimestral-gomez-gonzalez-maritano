@@ -1,4 +1,3 @@
-//PUNTO 1 ENTEGA 2----------------------
 class ViejoSabio {
 	var puntosDeHechiceria = 1
 	
@@ -19,10 +18,7 @@ object ayudanteViejoSabio{
 class Neblina{
 	const property posicion = null
 	const property imagen = "neblina.png"
-	// puede existir el caso donde la neblina exista, pero sin cosas ocultas?
 	const property cosasOcultas = [] 
-	//PRE-CONDICION: NUNCA PUEDE ESTAR VACIA LA LISTA
-	// Ahora la lista puede estar vacia
 	method agregarCosasOcultas(_cosa){
 		cosasOcultas.add(_cosa)
 	}

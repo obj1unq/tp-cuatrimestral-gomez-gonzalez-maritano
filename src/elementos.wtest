@@ -6,7 +6,6 @@ import artefactos.*
 import armaduras.*
 
 describe "Test de capo" {
-	// TODO tienen variables acá que no se usan!
 	var bandoSur=new Bando(unidadesOro=100,	reservaMateriales=50);
 	var bandoNorte=new Bando(unidadesOro=200, reservaMateriales=200);
 	
@@ -30,28 +29,21 @@ describe "Test de capo" {
 	var viejoSabio1 = new ViejoSabio(puntosDeHechiceria = 1)
 	
 	test"Rolando encuentra neblina(cosas ocultas: armaduraSinRefuerzo y espada del destino)"{
-		// TODO La construcción de la Neblina se podría hacer en una única instrucción.
-		var neblina = new Neblina()
-		neblina.agregarCosasOcultas(armaduraSinRefuerzo)
-		neblina.agregarCosasOcultas(espadaDelDestino)
+		var neblina = new Neblina(cosasOcultas=[armaduraSinRefuerzo, espadaDelDestino])
 		rolando.encontroCosa(neblina)
 		assert.equals(3 + 2 + 3, rolando.puntosDeLucha())
 		assert.equals(1 + 0 + 0, rolando.puntosDeHechiceria())
 	}
 		
-	test"Rolando encuentra neblina(cosas ocultas: archivaldo y espada del destino)"{
-		var neblina = new Neblina()
-		neblina.agregarCosasOcultas(cumuloCarbon1)
-		neblina.agregarCosasOcultas(archivaldo)
+	test"Rolando encuentra neblina(cosas ocultas: cumuloCarbon1 y Archivaldo)"{
+		var neblina = new Neblina(cosasOcultas=[cumuloCarbon1, archivaldo])
 		rolando.encontroCosa(neblina)
 		assert.equals(100, rolando.bando().reservaMateriales())
 		assert.notThat(rolando.estaVivo())
 	}
 		
 	test"Archivaldo encuentra neblina(cosas ocultas: Rolando y cofrecitoOro1)"{
-		var neblina = new Neblina()
-		neblina.agregarCosasOcultas(rolando)
-		neblina.agregarCosasOcultas(cofrecitoOro1)
+		var neblina = new Neblina(cosasOcultas=[rolando, cofrecitoOro1])
 		archivaldo.encontroCosa(neblina)
 		assert.equals(300, archivaldo.bando().unidadesOro())
 		assert.equals(true, archivaldo.estaVivo())
