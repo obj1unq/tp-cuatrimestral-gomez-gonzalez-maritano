@@ -3,6 +3,7 @@ import armaduras.*
 import artefactos.*
 import elementos.*
 import util.*
+import bando.*
 
 object bandos{
 	const property bandoSur = new Bando(unidadesOro=100,reservaMateriales=50)

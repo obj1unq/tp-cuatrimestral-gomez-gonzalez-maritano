@@ -6,6 +6,10 @@ import artefactos.*
 import armaduras.*
 
 describe "Test de capo" {
+	// TODO tienen variables acÃ¡ que no se usan!
+	//bandoSur se utliza en el contrsuctor de rolando y caterina, lineas 16 y 24
+	//bandoNorte se utiliza en el constructor de archivaldo, linea 20
+	//armaduraSinRefuerzo se utiliza en el constructor de neblina, linea 37
 	var bandoSur=new Bando(unidadesOro=100,	reservaMateriales=50);
 	var bandoNorte=new Bando(unidadesOro=200, reservaMateriales=200);
 	

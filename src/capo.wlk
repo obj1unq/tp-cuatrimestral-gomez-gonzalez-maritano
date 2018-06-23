@@ -23,12 +23,14 @@ class Capo{
 		
 	}
 	
+	method regalarArtefacto(_capo,_artefacto){
+		_capo.obtenerArtefacto(_artefacto)
+		self.artefactos().remove(_artefacto)
+	}
+	
 	method regalarArtefactos(_capo){
-		// TODO Acá se ve el abuso de las properties, asignar la colección de artefactos de un capo desde otro no es una buena práctica
-		// porque rompe el encapsulamiento, poco cambia que lo hagas a través de un setter.
-		// Ya que estamos: si el capo ya tiene una forma de obtener un artefacto, por qué no la usamos?
-		_capo.artefactos(_capo.artefactos()+self.artefactos())
-		self.artefactos().clear()
+		self.artefactos().forEach({artefacto=>self.regalarArtefacto(_capo, artefacto)})
+
 	}
 	
 	method pelearCon(_capo){
