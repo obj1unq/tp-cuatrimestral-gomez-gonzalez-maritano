@@ -1,4 +1,5 @@
 import capo.*
+import bando.*
 import elementos.*
 import artefactos.*
 import armaduras.*
