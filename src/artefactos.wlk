@@ -4,6 +4,7 @@ object espadaDelDestino{
 	method puntosDeHechiceria(_capo) = 0
 	method efecto(_capo){
 		_capo.obtenerArtefacto(self)
+		game.removeVisual(self)
 	}	
 }
 
