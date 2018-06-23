@@ -32,13 +32,10 @@ class Capo{
 	}
 	
 	method pelearCon(_capo){
-		if(_capo.puntosDeLucha()+_capo.puntosDeHechiceria()
-			>self.puntosDeLucha()+self.puntosDeHechiceria()
-		)
-			self.estaVivo(false)
+		if(_capo.puntosParaPelear() > self.puntosParaPelear())
+			self.morir()
 		else
-			_capo.estaVivo(false)
-			game.removeVisual(self) // TODO Acá la indentación confunde, creo que les faltan llaves.
+			_capo.morir()
 	}
 	
 	method incrementarBaseLucha() { baseDeLucha++ }
@@ -57,12 +54,19 @@ class Capo{
 		return baseDeHechiceria + artefactos.sum({artefacto => artefacto.puntosDeHechiceria(self)})
 	}
 	
+	method puntosParaPelear() = self.puntosDeLucha() + self.puntosDeHechiceria()
+	
 	method mejorArtefacto(_artefactos){
 		return _artefactos.max({_artefacto => _artefacto.puntosDeLucha(self) + _artefacto.puntosDeHechiceria(self)})
 	}
 	
 	method move(nuevaPosicion){
 		self.posicion(nuevaPosicion)
+	}
+	
+	method morir(){
+		estaVivo = false
+		game.removeVisual(self)
 	}
 }
 
